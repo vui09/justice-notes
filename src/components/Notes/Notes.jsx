@@ -78,18 +78,34 @@ const Notes = () => {
 		}
 	}
 
+	function activeList(){
+		setBtnList(true)
+		setBtnReminder(false)
+		setBtnImportant(false)
+	}
+	function activeReminder(){
+		setBtnList(false)
+		setBtnReminder(true)
+		setBtnImportant(false)
+	}
+	function activeImportant(){
+		setBtnList(false)
+		setBtnReminder(false)
+		setBtnImportant(true)
+	}
+
 	return (
 		<div className="notes">
 			<div className="container">
 				<div className="top">
 					<div className="left">
-						<div className="btn active">
+						<div className={ btnList ? 'btn active' : 'btn' } onClick={activeList}>
 							Список
 						</div>
-						<div className="btn">
+						<div className={ btnReminder ? 'btn active' : 'btn' } onClick={activeReminder}>
 							Напоминания
 						</div>
-						<div className="btn">
+						<div className={ btnImportant ? 'btn active' : 'btn' } onClick={activeImportant}>
 							Важно
 						</div>
 					</div>
