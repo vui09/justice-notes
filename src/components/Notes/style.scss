@@ -1,0 +1,70 @@
+@import "src/assets/_variables.scss";
+
+.notes{
+  .top{
+    display: flex;
+    justify-content: space-between;
+    margin: 56px 0 32px;
+  }
+}
+
+.left{
+  display: flex;
+
+  .btn{
+    border: 1px solid #F4F5F4;
+    margin-right: 16px;
+  }
+  .active{
+    background: #F4F5FE;
+  }
+}
+
+.right{
+  display: flex;
+  justify-content: right;
+
+  input{
+    border: 1px solid #F4F5F4;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 16px;
+    color: #1F1F1F;
+  }
+  ::-webkit-input-placeholder { /* WebKit browsers */
+    color: #1F1F1F;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #1F1F1F;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #1F1F1F;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #1F1F1F;
+  }
+
+  .borderRed{
+    border-color: red;
+  }
+  .btn{
+    background: $blue;
+    color: #fff;
+    margin-left: 16px;
+  }
+  .plus{
+    font-size: 30px;
+    padding: 0 5px;
+    margin-top: -4px;
+  }
+}
+
+.list{
+  .item{
+    background: #F4F5F4;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+}
+

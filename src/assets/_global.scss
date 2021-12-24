@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@import "variables";
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  height: 100%;
+}
+
+body{
+  font-family: 'Inter', sans-serif;
+  color: $text-color;
+  font-size: 14px;
+  line-height: 14px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container{
+  max-width: 1145px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+#root, .App{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.main{
+  flex: 1 0 auto;
+}
+
+.btn{
+  padding: 16px 32px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
