@@ -1,0 +1,147 @@
+import React, {useEffect, useState} from 'react';
+
+import './style.scss'
+
+const Notes = () => {
+
+	const [value, setValue] = useState('')
+	const [error, setError] = useState(false)
+	const [btnList, setBtnList] = useState(true)
+	const [btnReminder, setBtnReminder] = useState(false)
+	const [btnImportant, setBtnImportant] = useState(false)
+	const [list, setList] = useState([
+		{
+			text: 'Выбрать хостинг для сайта',
+			listItem: true,
+			reminder: false,
+			important: false,
+			id: Math.random().toString(36).substr(2, 9)
+		},
+		{
+			text: 'Записаться к стоматологу',
+			listItem: false,
+			reminder: true,
+			important: false,
+			id: Math.random().toString(36).substr(2, 9)
+		},
+		{
+			text: 'Записаться на курсы по Английскому',
+			listItem: false,
+			reminder: false,
+			important: true,
+			id: Math.random().toString(36).substr(2, 9)
+		},
+		{
+			text: 'Записаться на курсы по Китайскому',
+			listItem: false,
+			reminder: false,
+			important: true,
+			id: Math.random().toString(36).substr(2, 9)
+		},
+	])
+
+	const [listFiltered, setListFiltered] = useState(list)
+
+	useEffect(() => {
+		setListFiltered(list)
+	}, [list])
+
+	function addItem(){
+		if(value.length > 0 ){
+			if(btnList){
+				setList([...list, {
+					text: value,
+					listItem: true,
+					reminder: false,
+					important: false,
+					id: Math.random().toString(36).substr(2, 9)
+				}])
+				setValue('')
+			}
+			if(btnReminder) {
+				setList([...list, {
+					text: value,
+					listItem: false,
+					reminder: true,
+					important: false,
+					id: Math.random().toString(36).substr(2, 9)
+				}])
+				setValue('')
+			}
+			if(btnImportant){
+				setList([...list, {
+					text: value,
+					listItem: false,
+					reminder: false,
+					important: true,
+					id: Math.random().toString(36).substr(2, 9)
+				}])
+				setValue('')
+			}
+		} else{
+			setError(true)
+		}
+	}
+
+	const activeList = () => {
+		setBtnList(true)
+		setBtnReminder(false)
+		setBtnImportant(false)
+		setListFiltered(list.filter(item => item.listItem))
+	}
+	const activeReminder = () => {
+		setBtnList(false)
+		setBtnReminder(true)
+		setBtnImportant(false)
+		setListFiltered(list.filter(item => item.reminder))
+	}
+	const activeImportant = () => {
+		setBtnList(false)
+		setBtnReminder(false)
+		setBtnImportant(true)
+		setListFiltered(list.filter(item => item.important))
+	}
+
+	return (
+		<div className="notes">
+			<div className="container">
+				<div className="top">
+					<div className="left">
+						<div className={ btnList ? 'btn active' : 'btn' } onClick={activeList}>
+							Список
+						</div>
+						<div className={ btnReminder ? 'btn active' : 'btn' } onClick={activeReminder}>
+							Напоминания
+						</div>
+						<div className={ btnImportant ? 'btn active' : 'btn' } onClick={activeImportant}>
+							Важно
+						</div>
+					</div>
+					<div className="right">
+						<input type="text"
+						       className={ error ? 'borderRed' : '' }
+						       placeholder="Введите текст"
+						       value={value}
+						       onChange={(e)=> {
+							       setValue(e.target.value)
+							       setError(false)
+						       }
+						       }
+						/>
+						<div className="btn" onClick={addItem}>
+							Добавить
+							<span className="plus">+</span>
+						</div>
+					</div>
+				</div>
+				<div className="list">
+					{listFiltered.map((item) => {
+						return <div className="item" id={item.id} key={item.id}>{item.text}</div>
+					})}
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default Notes;
