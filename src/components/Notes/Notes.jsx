@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 const Notes = () => {
 
 	const list = useSelector(store => store?.list)
-	console.log('===>list', list);
+	//console.log('===>list', list);
 
 	const [value, setValue] = useState('')
 	const [error, setError] = useState(false)
@@ -110,8 +110,9 @@ const Notes = () => {
 		}
 	}
 
-	const removeItem = () => {
-		dispatch({type:"REMOVE_LIST", payload: item.id})
+	const removeItem = (id) => {
+		console.log('===>id', id);
+		dispatch({type:"REMOVE_LIST", payload: id})
 	}
 
 	const activeList = () => {
@@ -181,7 +182,7 @@ const Notes = () => {
 				</div>
 				<div className="list">
 					{listFiltered.map((item) => {
-						return <div onClick={removeItem} className="item" id={item.id} key={item.id}>{item.text}</div>
+						return <div onClick={() => removeItem(item.id)} className="item" id={item.id} key={item.id}>{item.text}</div>
 					})}
 				</div>
 			</div>

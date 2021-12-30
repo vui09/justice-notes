@@ -3,14 +3,21 @@ import React, {useState} from 'react';
 import searchIcon from '../../assets/images/icons/close.png'
 
 import './style.scss'
+import {useDispatch, useSelector} from "react-redux";
 
-const Modal = ({list, setModal}) => {
+const Modal = ({setModal}) => {
+
+	const dispatch = useDispatch()
 
 	const [value, setValue] = useState('');
+
+	const list = useSelector(store => store?.list)
 
 	const filteredValue = list.filter(val => {
 		return val.text.toLowerCase().includes(value.toLowerCase())
 	})
+
+	//const filteredValue = dispatch({type:"FILTERED_LIST", payload: )
 
 	const closeModal = () => {
 		setModal(false)

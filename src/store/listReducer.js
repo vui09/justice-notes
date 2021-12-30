@@ -41,12 +41,13 @@ export const listReducer = (state = defaultState, action) => {
 	// console.log('===>action', action);
 	switch (action.type) {
 		case "ADD_LIST":
-			console.log('===>111', 111);
 			return [...state, action.payload] // [state.filter(el => el.id !== action.payload.id]
 		case "REMOVE_LIST":
-			return [state.filter(el => el.id !== action.payload.id)]
-			// console.log('===>el.id', el.id);
-			// console.log('===>action.payload.id', action.payload.id);
+			//console.log('===>action', action);
+			return state.filter(el => el.id !== action.payload)
+		case "FILTERED_LIST":
+			// console.log('===>action', action);
+			// return state.filter(val => {return val.text.toLowerCase().includes(value.toLowerCase())})
 		default:
 			return state
 	}
